@@ -1,0 +1,160 @@
+.profile-pic{
+	width: 200px;
+	height: 200px;
+	border-radius: 5%;
+}
+
+.small-profile-pic{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.cover-pic{
+	width: 250px;
+	height: 350px;
+	border-radius: 5%;
+}
+
+.cover-pic-detail{
+	width: 200px;
+	height: 300px;
+	border-radius: 5%;
+}
+
+.collapsing {
+  height: 335px;
+  overflow: hidden;
+	/* @include transition($transition-collapse); */
+}
+
+
+
+
+
+
+
+
+/* kitobga baho berish  */
+.rt-bl {
+	position: relative;
+	height: 55px;
+	margin: 20px 0;
+	border: 1px solid #f7e1e3;
+	border-radius: 3px;
+	background: none repeat scroll 0 0 #fcf8f8;
+}
+@media only screen and (max-width: 760px), only screen and (max-device-width: 900px)
+.rt {
+	left: 20px;
+	color: #8f95a3;
+	top: 5px;
+	width: 540px;
+}
+.rt {
+	position: absolute;
+	left: 300px;
+	color: #8f95a3;
+	top: 2px;
+	width: 360px;
+}
+
+@media only screen and (max-width: 760px), only screen and (max-device-width: 900px)
+.post-ratings IMG {
+    height: 40px;
+    margin-right: 7px;
+}
+
+.post-ratings IMG, .post-ratings-loading IMG, .post-ratings-image IMG {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    height: 29px;
+}
+.post-ratings-image {
+    border: 0px;
+}
+img {
+    border: medium none;
+}
+
+.post-ratings {
+	width: 100%;
+	height: 20px;
+	filter: alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity: 1;
+	background-color: #ffffff;
+}
+
+@media only screen and (max-width: 760px), only screen and (max-device-width: 900px)
+.unit-rating span {
+	font-size: 24px;
+	right: 1px;
+	margin-top: 2px;
+}
+
+.unit-rating span {
+	position: absolute;
+	right: 10px;
+	top: 4px;
+	font-size: 17px;
+	color: #fff;
+	font-weight: 700;
+	background: #ec7263;
+	padding: 2px 7px;
+	border-radius: 2px;
+}
+
+
+/* home page */
+.posts-content{
+	margin-top:20px;    
+}
+.ui-w-40 {
+	width: 40px !important;
+	height: auto;
+}
+.default-style .ui-bordered {
+	border: 1px solid rgba(24,28,33,0.06);
+}
+.ui-bg-cover {
+	background-color: transparent;
+	background-position: center center;
+	background-size: cover;
+}
+.ui-rect {
+	padding-top: 50% !important;
+}
+.ui-rect, .ui-rect-30, .ui-rect-60, .ui-rect-67, .ui-rect-75 {
+	position: relative !important;
+	display: block !important;
+	padding-top: 100% !important;
+	width: 100% !important;
+}
+.d-flex, .d-inline-flex, .media, .media>:not(.media-body), .jumbotron, .card {
+	-ms-flex-negative: 1;
+	flex-shrink: 1;
+}
+.bg-dark {
+	background-color: rgba(24,28,33,0.9) !important;
+}
+.card-footer, .card hr {
+	border-color: rgba(24,28,33,0.06);
+}
+.ui-rect-content {
+	position: absolute !important;
+	top: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+	left: 0 !important;
+}
+.default-style .ui-bordered {
+	border: 1px solid rgba(24,28,33,0.06);
+}
+
+.center{
+	margin: 0 auto;
+	display: block;
+}
+/* home page */

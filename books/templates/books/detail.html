@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Book Detail Page</title>
+</head>
+<body> -->
+
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+	{% block title %}Book Detail Page{% endblock title %}
+
+{% block content %}
+	<div class="row mb-4">
+		<div class="col-3 ">
+			<a href="{{ book.cover_picture.url }}"><img class="cover-pic-detail" alt="cover image" src="{{ book.cover_picture.url }}"></a>
+		</div>
+		<div class="col-6">
+			<h3>{{ book.title }}</h3>
+
+			<span class="fst-italic">
+				Authored by
+				{% for book_author in book.bookauthor_set.all %}
+					{% if forloop.last %}
+						{{ book_author.author.full_name }}
+					{% else %}
+						{{ book_author.author.full_name }},
+					{% endif %}
+					
+				{% endfor %}
+			</span>
+
+			<p>
+				{{ book.description }}
+			</p>
+		</div>
+	</div>
+
+	<div class="row mb-4">
+		<div class="col-6">
+			<form method="post" action="{% url 'books:reviews' book.id %}">
+				{% csrf_token %}
+				<div class="rt-bl">
+					<div class="rt">
+						<div onclick="alert('Чтобы оценить дораму нужно зарегистрироваться')" class="post-ratings">
+							<div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+								<img src="https://doramy.club/img/star/rating_off.svg" alt class="post-ratings-image">
+					
+								<img src="https://doramy.club/img/star/rating_half.svg" alt class="post-ratings-image">
+		
+								<img src="https://doramy.club/img/star/rating_on.svg" alt class="post-ratings-image">
+			
+								<meta itemprop="bestRating" content="10">
+								<div class="unit-rating">
+									<span itemprop="ratingValue">8.53</span>
+								</div>                                          
+								<div class="ocenki">Оценок: <span itemprop="ratingCount">601</span></div>
+								<span style="display:none;" itemprop="itemReviewed">После первого брака</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<script type="text/javascript">
+					/* <![CDATA[ */
+					var ratingsL10n = {"plugin_url":"https:\/\/doramy.club\/wp-content\/plugins\/wp-postratings","ajax_url":"https:\/\/doramy.club\/wp-admin\/admin-ajax.php","text_wait":"Please rate only 1 post at a time.","image":"stars_crystal","image_ext":"gif","max":"10","show_loading":"0","show_fading":"0","custom":"0"};
+					var ratings_mouseover_image=new Image();ratings_mouseover_image.src="/img/star/rating_over.svg";
+					/* ]]> */
+					</script>
+
+				{{ review_form | crispy }}
+				<button class="btn btn-outline-success">Add review</button>
+			</form>
+			
+		</div>
+	</div>
+
+	{% if book.bookreview_set.exists %}
+		<h4>Reviews</h4><hr>
+		{% for review in book.bookreview_set.all %}
+			<div class="row mb-3">
+				<div class="col-1">
+					<a href="{{ review.user.profile_picture.url }}"><img class="small-profile-pic" src="{{ review.user.profile_picture.url }}" alt=""></a>
+				</div>
+				<div class="col-7 mb-3">
+
+
+
+
+					<b>{{ review.user.username }}</b> rated it <b>{{ review.stars_given }}</b> stars <span class="fw-lighter">{{ review.created_at }}</span> 
+					<p class="mt-2 font-monospace fst-italic">{{ review.comment }}</p>
+				</div>
+			</div>
+
+		{% endfor %}
+	{% endif %}
+
+
+
+	<!-- <h3>{{ book.title }}</h3>
+	<img class="cover_pic" alt="cover image" src="{{ book.cover_picture.url }}">
+	<p>
+		{{ book.description }}
+	</p> -->
+	
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- </body>
+</html> -->

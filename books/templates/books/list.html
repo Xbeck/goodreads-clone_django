@@ -1,0 +1,86 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Books Page</title>
+</head>
+<body> -->
+<!-- yuqoridagi qism endi kerak mas -->
+
+
+
+{% extends "base.html" %}
+
+{% block title %}Books Page{% endblock title %}
+
+{% block content %}
+	<h3>Books</h3>
+	{% if page_obj %}
+
+			{% for book in page_obj.object_list %}
+				<div class="row mb-4">
+					<div class="col-3">
+						<a href="{% url 'books:detail' book.id %}"><img class="cover-pic" src="{{ book.cover_picture.url }}" alt=""></a>
+					</div>
+					<div class="col-6 mt-1">
+						<a href="{% url 'books:detail' book.id %}" style="text-decoration: none;">{{ book.title }}</a>
+
+						<p class="collapsing">
+							{{ book.description}}
+						</p>
+					</div>
+				</div>
+					
+
+				<br>
+			{% endfor %}
+
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					{% if page_obj.has_previous %}
+						<li class="page-item">
+							<a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number}}</a></li>
+					{% endif %}
+
+					<li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+
+					{% if page_obj.has_next %}
+					<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number}}</a></li>
+						<li class="page-item">
+							<a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					{% endif %}
+
+				</ul>
+			</nav>
+
+			<!-- {% if page_obj.has_previous %}
+				<a href="{% url 'books:list' %}?page={{ page_obj.previous_page_number }}">back</a>
+			{% endif %}
+
+			{{ page_obj.number }}
+
+			{% if page_obj.has_next %}
+				<a href="{% url 'books:list' %}?page={{ page_obj.next_page_number }}">next</a>
+			{% endif %} -->
+
+	{% else %}
+		No books found.
+	{% endif %}
+{% endblock content %}
+
+	
+
+
+
+<!-- pastdagi qisim kerakmas -->
+<!-- </body>
+</html> -->

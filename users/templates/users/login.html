@@ -1,0 +1,51 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login Page</title>
+</head>
+<body> -->
+
+
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+	{% block title %}Login Page{% endblock title %}
+
+	{% block content %}
+
+		<h1>Login Page</h1>
+
+		<div class="col-4">
+			<form method="post" action="{% url 'users:login' %}">
+				{% csrf_token %}
+	
+				<!-- {{ login_form.as_p }} -->
+				{{ login_form | crispy }}
+			
+				<!-- {% comment %} <label for="username">Username:</label>
+				<input id='username' type="text" name='username'> <br> <br> {% endcomment %}
+	
+				{% comment %} <label for="email">Email:</label>
+				<input id='email' type="email" name='email'> <br> <br> {% endcomment %}
+			
+				{% comment %} <label for="password">Password:</label>
+				<input id='password' type="password" name='password'> <br> <br> {% endcomment %} -->
+	
+				<button type="submit" class="btn btn-sm btn-outline-primary">Log in</button> <span>No account? Them, <a href="{% url 'users:register' %}" class="btn btn-sm btn-outline-success">Sign Up</a></span>
+			
+			</form>
+		</div>
+
+
+
+	{% endblock content %}
+
+
+
+
+
+<!-- </body>
+</html> -->
