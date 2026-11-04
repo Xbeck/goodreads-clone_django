@@ -1,4 +1,8 @@
 .vscode/
 __pycache__/
 
-vmuhit/
+.venv/
+
+readme.txt
+vs code commands.txt
+xatolar-ok.txt

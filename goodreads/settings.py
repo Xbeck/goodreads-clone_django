@@ -142,7 +142,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Dev muhitida emaillar haqiqiy yuborilmaydi, terminalga chiqadi (SMTP ulanish xatosini oldini oladi).
+# Haqiqiy SMTP uchun quyidagi qatorni almashtiring: 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'gsmtp.gmail.com'
 EMAIL_HOST_USER = 'test@gmail.com'
 EMAIL_HOST_PASSWORD = 'pass'
