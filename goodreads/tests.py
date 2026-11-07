@@ -23,5 +23,3 @@ class HomePageTestCase(TestCase):
 		self.assertContains(response, review3.comment)
 		self.assertContains(response, review2.comment)
 		self.assertNotContains(response, review1.comment)
-
-

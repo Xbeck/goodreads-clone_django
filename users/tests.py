@@ -1,11 +1,9 @@
 from urllib import response
 from django.contrib.auth import get_user
-# from django.contrib.auth.models import User		# jango user modeli endi kerak mas, chunki uni o'zgartirib bo'lmaydi, uning o'rniga o'zimiz yaratgan customuser ni ishlatamiz
 from users.models import CustomUser
 
 from django.test import TestCase
 from django.urls import reverse
-# from matplotlib.pyplot import cla, clabel
 
 
 # Create your tests here.
@@ -93,7 +91,7 @@ class RegistrationTestCase(TestCase): # test uchun user yaratamiz
 # login post request uchun test:
 class LoginTestCase(TestCase):
 	
-	def setUp(self):		# har bitta test yurishidan oldin shu funksiya ishlaydi, mana shu funksiya da userni yaratib olamiz, shunda testlarimizda user yaratish kodi takrorlanmaydi. 
+	def setUp(self):
 		# DRY - Dont repeat yourself
 		self.db_user = CustomUser.objects.create(username="xolmumin", first_name="Xolmumin")
 		self.db_user.set_password("somepass")
@@ -101,11 +99,6 @@ class LoginTestCase(TestCase):
 
 
 	def test_successful_login(self):
-		# # userni bazadan olamiz
-		# db_user = CustomUser.objects.create(username="xolmumin", first_name="Xolmumin")
-		# db_user.set_password("somepass")
-		# db_user.save()
-
 		#  userni login qilmoqchimiz:
 		self.client.post(
 			reverse("users:login"), 	# login url iga post request yuboramiz, va uni ichida data bo'ladi
@@ -124,10 +117,6 @@ class LoginTestCase(TestCase):
 
 	# noto'g'ri parol yo username uchun test:
 	def test_wrong_credentials(self):
-		# db_user = CustomUser.objects.create(username="xolmumin", first_name="Xolmumin")
-		# db_user.set_password("somepass")
-		# db_user.save()
-
 		#  userni login qilmoqchimiz:
 		self.client.post(
 			reverse("users:login"), # login url iga post request yuboramiz, va uni ichida data bo'ladi
@@ -155,10 +144,6 @@ class LoginTestCase(TestCase):
 
 	# log out uchun test:
 	def test_logout(self):
-		# db_user = CustomUser.objects.create(username="xolmumin", first_name="Xolmumin")
-		# db_user.set_password("somepass")
-		# db_user.save()
-
 		self.client.login(username="xolmumin", password="somepass")		# login qilamiz
 
 		self.client.get(reverse("users:logout"))		# logout qilish uchun request yuboramiz

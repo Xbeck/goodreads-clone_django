@@ -90,17 +90,3 @@ class BookReviewTestCase(TestCase):
 		self.assertEqual(book_reviews[0].comment, "Nice book")		# komentni tekshiramiz
 		self.assertEqual(book_reviews[0].book, book)
 		self.assertEqual(book_reviews[0].user, user)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

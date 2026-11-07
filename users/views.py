@@ -6,42 +6,26 @@ from venv import create
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.views import View
-# from matplotlib.style import context
 
 
-from users.forms import UserCreateForm, UserUpdateForm	#, UserLoginForm
+from users.forms import UserCreateForm, UserUpdateForm
 
 
-# Create your views here.
 class RegisterView(View):
 	def get(self, request):
 		create_form = UserCreateForm()
 		context = {"form": create_form}
 		return render(request, "users/register.html", context)
 	
-	def post(self, request):		# malumotlarni qabul qilib olish
-		create_form = UserCreateForm(data=request.POST) 	# validatsiya uchun formani chaqirish
+	def post(self, request):
+		create_form = UserCreateForm(data=request.POST)
 
-		if create_form.is_valid():		# validatsiya qiladi
-			create_form.save()		# forms.py dagi  metodni chaqiramiz pastdagi kodning o'rniga
-			# username = request.POST['username']
-			# first_name = request.POST['first_name']
-			# last_name = request.POST['last_name']
-			# email = request.POST['email']
-			# password = request.POST['password']
-
-			# user = User.objects.create(		# user obyek yatatib, kiritilgan qiymatlarni db ga qo'shadi:
-			# 	username = username,
-			# 	first_name = first_name,
-			# 	last_name = last_name,
-			# 	email = email
-			# )
-			# user.set_password(password)			# password ni hash ga aylantirib yuborish
-			# user.save()
-
+		if create_form.is_valid():
+			create_form.save()
+			
 			# create user account
 			return redirect('users:login')
-		else:		# xato bo'ksa qanaqa xatoligini ko'rsatadi
+		else:
 			context = {"form": create_form}
 			return render(request, "users/register.html", context)
 
@@ -53,8 +37,7 @@ class LoginView(View):
 		return render(request, "users/login.html", {"login_form": login_form})
 	
 	def post(self, request):
-		# print(request.POST['username'], request.POST['password'])
-		login_form = AuthenticationForm(data=request.POST)	# data ni postga berib yuboramiz
+		login_form = AuthenticationForm(data=request.POST)
 
 		# formani to'g'rimi yo'qligini tekshiramiz:
 		if login_form.is_valid():
@@ -68,24 +51,14 @@ class LoginView(View):
 
 
 class ProfileView(LoginRequiredMixin, View):
-	def get(self, request):		# user ni request ichidan olamiz.
-
-		# ------------ bu qisimning vazifasini django ni classi LoginRequiredMixein bajaradi ------------------
-
-		# if not request.user.is_authenticated:		# agar user login qilmagan bo'lsa uni login page ga yo'naltirib yuboramiz.
-		# 	return redirect("users:login")
-		# -------------------------------------------------------------------------------------------------------
-
-		return render(request, "users/profile.html", {"user": request.user})		# html saxifaga yo'naltiramiz. va manashu requestni yuborgan(login qilgan yo qilmagan) userni uzatamiz
-
-
-class LogoutView(LoginRequiredMixin, View):		# faqat login qilganlar uchun.
 	def get(self, request):
-		logout(request)		# log out qilib beradi
-		messages.info(request, "Siz saxifangizdan muvafaqiyatli chiqdingiz.")		# malumot chiqarish uchun, xabar yaratamiz. faqat bir martalik xabar. 
-		# messages.warning()
-		# messages.error()		# xato bo'lsa
-		# messages.success()		# muvafaqiyatli bajarilsa
+		return render(request, "users/profile.html", {"user": request.user})
+
+
+class LogoutView(LoginRequiredMixin, View):
+	def get(self, request):
+		logout(request)
+		messages.info(request, "Siz saxifangizdan muvafaqiyatli chiqdingiz.")
 		return redirect("landing_page")
 
 
@@ -108,6 +81,3 @@ class ProfileUpdateView(LoginRequiredMixin, View):
 			return redirect("users:profile")
 		
 		return render(request, "users/profile_edit.html", {"form": user_update_form})
-
-
-

@@ -5,20 +5,10 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views import View
-# from matplotlib.style import use
 from books.forms import BookReviewForm
-
 
 from books.models import Book, BookReview
 
-
-# Create your views here.
-
-# class BooksView(ListView):
-# 	template_name = "books/list.html"
-# 	queryset = Book.objects.all()
-# 	context_object_name = "books"
-# 	paginate_by: int = 2
 
 class BooksView(View):
 	def get(self, request):
@@ -27,7 +17,7 @@ class BooksView(View):
 		if search_query:
 			books = books.filter(title__icontains=search_query)
 
-		page_size = request.GET.get('page_size', 4)		# element soni kiritilmasa har bir saxifaga 2 tadan element joylaydi.
+		page_size = request.GET.get('page_size', 4)
 		paginator = Paginator(books, page_size)
 
 		page_num = request.GET.get('page', 1)
@@ -38,13 +28,7 @@ class BooksView(View):
 			"books/list.html",
 			{"page_obj": page_obj, "search_query": search_query}
 		)
-		# return render(request, "books/list.html", {"books": books})
 
-
-# class BookDetailView(DetailView):
-# 	model = Book
-# 	template_name = 'books/detail.html'
-# 	pk_url_kwarg = "id"
 
 class BookDetailView(View):
 	def get(self, request, id):
@@ -56,8 +40,8 @@ class BookDetailView(View):
 
 class AddReviewView(LoginRequiredMixin, View):
 	def post(self, request, id):
-		book = Book.objects.get(id=id)		# kitobni bazadan olib olamiz
-		review_form = BookReviewForm(data=request.POST)  	# formani olamiz
+		book = Book.objects.get(id=id)
+		review_form = BookReviewForm(data=request.POST)
 
 		if review_form.is_valid():
 			BookReview.objects.create(

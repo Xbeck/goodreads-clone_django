@@ -6,12 +6,10 @@ from users.models import CustomUser
 from django.db import models
 
 
-# Create your models here. # books modeli yaratildi. SQL jadvalga aylantirib beradi
 class Book(models.Model):
-	title = models.CharField(max_length=200)		# VARCHAR() ga tarjima qilib beradi
+	title = models.CharField(max_length=200)
 	description = models.TextField()
 	isbn = models.CharField(max_length=17)
-	# genres = models.CharField(max_length=100)		# kitob janri
 	cover_picture = models.ImageField(default="default_cover.jpg")
 
 	def __str__(self):
@@ -31,7 +29,7 @@ class Author(models.Model):
 		return f"{self.first_name} {self.last_name}"
 
 
-class BookAuthor(models.Model):		# book va author modellarini ulaymiz
+class BookAuthor(models.Model):
 	book = models.ForeignKey(Book, on_delete=models.CASCADE)
 	author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
@@ -40,8 +38,8 @@ class BookAuthor(models.Model):		# book va author modellarini ulaymiz
 
 
 class BookReview(models.Model):
-	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)	# review ni user ga bog'lash
-	book = models.ForeignKey(Book, on_delete=models.CASCADE)	# review ni book ga bog'lash
+	user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+	book = models.ForeignKey(Book, on_delete=models.CASCADE)
 	comment = models.TextField()
 	stars_given = models.IntegerField(
 		validators=[MinValueValidator(1), MaxValueValidator(5)]

@@ -11,7 +11,7 @@ urlpatterns = [
 	path('', landing_page, name='landing_page'),
 	path('home/', home_page, name='home_page'),
 	path('users/', include("users.urls"), name='users'),
-	path('books/', include("books.urls"), name='list'),  # nom bermasak ham o'ladi
+	path('books/', include("books.urls"), name='list'),
 
 	path('admin/', admin.site.urls),
 ]
